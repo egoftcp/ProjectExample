@@ -1,0 +1,7 @@
+UserId|FirstName|LastName|PhoneNumber|Balance
+Integer|String|String|String|Integer
+true|false|false|false|false
+1|"Enrique"|"Sterling"|"123-456-7899"|0
+3|"Jonathan"|"Ng"|"444-444-4444"|200
+4|"Norman"|"Ren"|"222-222-2222"|20
+5|"Matthew"|"Samollow"|"888-888-8888"|500

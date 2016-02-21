@@ -1,0 +1,44 @@
+CREATE TABLE Customer (UserId INTEGER, FirstName VARCHAR(20), LastName VARCHAR(20), PhoneNumber VARCHAR(12), Balance INTEGER) PRIMARY KEY (UserId);
+CREATE TABLE DVD (InventoryNumber INTEGER, DVDId INTEGER, Title VARCHAR(50), Year INTEGER) PRIMARY KEY (InventoryNumber);
+CREATE TABLE RentalLog (UserId INTEGER, InventoryNumber INTEGER, CheckOutDate VARCHAR(20), DueDate VARCHAR(20)) PRIMARY KEY (UserId, InventoryNumber);
+
+INSERT INTO Customer VALUES FROM ( 1, "Enrique", "Sterling", "555-555-5555", 0);
+INSERT INTO Customer VALUES FROM ( 2, "Thomas", "Morris", "777-777-7777", 50);
+INSERT INTO Customer VALUES FROM ( 3, "Jonathan", "Ng", "444-444-4444", 200);
+
+
+INSERT INTO DVD VALUES FROM ( 1, 1, "Lord of the Rings: Return of the King", 2003);
+INSERT INTO DVD VALUES FROM ( 2, 1, "Lord of the Rings: Return of the King", 2003);
+INSERT INTO DVD VALUES FROM ( 3, 2, "The Avengers", 2012);
+INSERT INTO DVD VALUES FROM ( 4, 2, "The Avengers", 2012);
+INSERT INTO DVD VALUES FROM ( 5, 3, "Inside Out", 2015);
+
+DELETE FROM Customer WHERE FirstName == "Thomas";
+DELETE FROM DVD WHERE InventoryNumber == 5;
+
+UPDATE Customer SET PhoneNumber = "123-456-7899" WHERE FirstName == "Enrique";
+UPDATE DVD SET Title = "The Avengers: Age of Ultron" WHERE Title == "The Avengers";
+
+SHOW Customer;
+
+SHOW (select (FirstName == "Enrique" && LastName == "Sterling" && PhoneNumber == "555-555-5555") Customer); 
+
+SHOW DVD;
+
+SHOW (select (DVDId == 3 || Title == "Inside Out") DVD);
+
+SHOW (select (InventoryNumber == 2) DVD);
+
+UPDATE Customer SET Balance = 50 WHERE UserId == 1;
+UPDATE Customer SET Balance = 800 WHERE UserId == 3;
+
+INSERT INTO RentalLog VALUES FROM ( 1, 5, "6-22-15", "6-25-15");
+INSERT INTO RentalLog VALUES FROM ( 2, 1, "6-22-15", "6-25-15");
+INSERT INTO RentalLog VALUES FROM ( 1, 3, "6-23-15", "6-26-15");
+
+DELETE FROM RentalLog WHERE DueDate == "6-25-15";
+
+available_dvds <-  
+
+
+

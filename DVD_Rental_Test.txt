@@ -1,0 +1,86 @@
+/* 
+To run the program, type the following command:
+
+java -jar Project2_Runnable.jar
+
+Then copy and paste the entirety of the code below
+to test all functions of our Database App.
+*/
+
+CREATE TABLE Customer (UserId INTEGER, FirstName VARCHAR(20), LastName VARCHAR(20), PhoneNumber VARCHAR(12), Balance INTEGER) PRIMARY KEY (UserId);
+CREATE TABLE DVD (InventoryNumber INTEGER, DVDId INTEGER, Title VARCHAR(50), Year INTEGER, InStock VARCHAR(3)) PRIMARY KEY (InventoryNumber);
+CREATE TABLE RentalLog (UserId INTEGER, InventoryNumber INTEGER, CheckOutDate VARCHAR(20), DueDate VARCHAR(20)) PRIMARY KEY (UserId, InventoryNumber);
+
+INSERT INTO Customer VALUES FROM ( 1, "Enrique", "Sterling", "555-555-5555", 0);
+INSERT INTO Customer VALUES FROM ( 2, "Thomas", "Morris", "777-777-7777", 50);
+INSERT INTO Customer VALUES FROM ( 3, "Jonathan", "Ng", "444-444-4444", 200);
+INSERT INTO Customer VALUES FROM ( 4, "Norman", "Ren", "222-222-2222", 20);
+INSERT INTO Customer VALUES FROM ( 5, "Matthew", "Samollow", "888-888-8888", 500);
+
+INSERT INTO DVD VALUES FROM ( 1, 1, "Lord of the Rings: Return of the King", 2003, "NO");
+INSERT INTO DVD VALUES FROM ( 2, 1, "Lord of the Rings: Return of the King", 2003, "YES");
+INSERT INTO DVD VALUES FROM ( 3, 2, "The Avengers", 2012, "NO");
+INSERT INTO DVD VALUES FROM ( 4, 2, "The Avengers", 2012, "YES");
+INSERT INTO DVD VALUES FROM ( 5, 2, "The Avengers", 2012, "NO");
+INSERT INTO DVD VALUES FROM ( 6, 3, "Inside Out", 2015, "YES");
+INSERT INTO DVD VALUES FROM ( 7, 4, "Jurassic World", 2015, "YES");
+INSERT INTO DVD VALUES FROM ( 8, 4, "Jurassic World", 2015, "YES");
+INSERT INTO DVD VALUES FROM ( 9, 4, "Jurassic World", 2015, "YES");
+INSERT INTO DVD VALUES FROM ( 10, 5, "Jurassic Park", 1993, "YES");
+INSERT INTO DVD VALUES FROM ( 11, 5, "Jurassic Park", 1993, "YES");
+INSERT INTO DVD VALUES FROM ( 12, 5, "Jurassic Park", 1993, "YES");
+
+INSERT INTO RentalLog VALUES FROM ( 1, 5, "6-22-15", "6-25-15");
+INSERT INTO RentalLog VALUES FROM ( 2, 1, "6-22-15", "6-25-15");
+INSERT INTO RentalLog VALUES FROM ( 1, 3, "6-23-15", "6-26-15");
+
+WRITE Customer;
+WRITE DVD;
+WRITE RentalLog;
+
+DELETE FROM Customer WHERE FirstName == "Thomas";
+UPDATE Customer SET PhoneNumber = "123-456-7899" WHERE FirstName == "Enrique";
+SHOW Customer;
+
+OPEN Customer;
+SHOW Customer;
+CLOSE Customer;
+
+SHOW (select (FirstName == "Enrique" && LastName == "Sterling" && PhoneNumber == "555-555-5555") Customer); 
+
+UPDATE DVD SET Title = "The Avengers: Age of Ultron" WHERE Title == "The Avengers";
+SHOW DVD;
+
+SHOW (select (DVDId == 3 || Title == "Inside Out") DVD);
+
+SHOW (select (InventoryNumber == 2) DVD);
+
+UPDATE Customer SET Balance = 50 WHERE UserId == 1;
+UPDATE Customer SET Balance = 800 WHERE UserId == 3;
+SHOW Customer;
+
+DELETE FROM RentalLog WHERE DueDate == "6-25-15";
+SHOW RentalLog;
+
+AvailableDVDs <- select (InStock == "YES") DVD;
+SHOW AvailableDVDs;
+
+AllDVDs <- AvailableDVDs + (select (InStock == "NO") DVD);
+SHOW AllDVDs;
+
+HighBalance <- project (FirstName, LastName) (select (Balance > 100) Customer);
+SHOW HighBalance;
+
+CustomerRentals <-  RentalLog & Customer;
+SHOW CustomerRentals;
+
+NewNames <- rename (ID, First, Last, Phone, Balance) Customer;
+SHOW NewNames;
+
+LowBalance <- (project (FirstName, LastName) Customer) - HighBalance;
+SHOW LowBalance;
+
+Product <- Customer * DVD;
+SHOW Product;
+
+EXIT;
